@@ -8,7 +8,7 @@ import CustomSection from "../molecules/CustomSection";
 import CustomCheckBox from "../atoms/CustomCheckBox";
 import CustomRadioBox from "../atoms/CustomRadioBox";
 import CustomInputText from "../atoms/CustomInputText";
-export default function Test() {
+export default function Sample() {
   const options = [
     { key: "Option 1", value: "1" },
     { key: "Option 2", value: "2" },
