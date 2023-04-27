@@ -1,16 +1,8 @@
 import "./globals.css";
 import type { AppProps } from "next/app";
 import { useEffect, useState } from "react";
-import {
-  Button,
-  CircularProgress,
-  Modal,
-  Snackbar,
-  SnackbarContent,
-  useMediaQuery,
-} from "@mui/material";
+import { CircularProgress, Modal } from "@mui/material";
 import CustomText from "src/components/atoms/CustomText";
-import { useRouter } from "next/router";
 import CustomButton from "src/components/atoms/CustomButton";
 import CustomSection from "src/components/molecules/CustomSection";
 
@@ -20,7 +12,6 @@ declare global {
     customLoadingOpen: Function;
     customLoadingClose: Function;
     customLogin: Function;
-    toast: Function;
   }
 }
 interface confirmMessageProps {
@@ -30,12 +21,7 @@ interface confirmMessageProps {
   clickEvent: Function;
 }
 
-interface toastMessageProps {
-  status: boolean;
-  message: string;
-}
 export default function App({ Component, pageProps }: AppProps) {
-  const router = useRouter();
   const [alertMessage, setAlertMessage] = useState("");
   const confirmMessageDefaultValue = {
     status: false,
@@ -96,7 +82,7 @@ export default function App({ Component, pageProps }: AppProps) {
       >
         <section
           style={{
-            width: 300,
+            minWidth: 150,
             maxWidth: 300,
             backgroundColor: "#FFFFFF",
             borderRadius: 10,
