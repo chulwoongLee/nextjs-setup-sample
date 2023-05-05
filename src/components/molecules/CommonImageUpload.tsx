@@ -1,12 +1,13 @@
 import { Fragment, useRef, useState, useEffect } from "react";
 import CustomPopup from "./CustomPopup";
-import CustomSetObject from "./CustomSetObject";
 import CustomText from "../atoms/CustomText";
 import CustomButton from "../atoms/CustomButton";
-import CustomIcon from "../atoms/CustomIcon";
+//import CustomIcon from "../atoms/CustomIcon";
 import { useDrag, useDrop, DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import CustomSection from "./CustomSection";
+import CloseIcon from "@mui/icons-material/Close";
+import UploadFileIcon from "@mui/icons-material/UploadFile";
 interface CommonImageUploadProps {
   multiple?: number;
   Volume: number;
@@ -139,7 +140,7 @@ export default function CommonImageUpload(props: CommonImageUploadProps) {
           setModalStatus(false);
         }}
       >
-        <CustomSection flexDirection="column">
+        <CustomSection flexDirection="column" alignItems="flex-start">
           <section
             style={{
               cursor: "pointer",
@@ -187,11 +188,12 @@ export default function CommonImageUpload(props: CommonImageUploadProps) {
                 display: "flex",
               }}
             >
-              <CustomIcon
+              {/* <CustomIcon
                 url="/icon-upload"
                 size={16}
                 color={overStatus ? "#FF008A" : undefined}
-              />
+              /> */}
+              <UploadFileIcon />
             </div>
             <CustomText type="p5" color="#666666">
               업로드할 파일을 이 영역으로
@@ -201,7 +203,7 @@ export default function CommonImageUpload(props: CommonImageUploadProps) {
           </section>
           <CustomSection
             flexDirection="row"
-            justifyContent="space-between"
+            justifyContent="flex-start"
             noMargin
           >
             <CustomText type="p6" color="#333333">
@@ -213,28 +215,29 @@ export default function CommonImageUpload(props: CommonImageUploadProps) {
             </CustomText>
           </CustomSection>
         </CustomSection>
-        <DndProvider backend={HTML5Backend}>
-          <CustomSetObject
-            flexDirectionType="row"
-            noMargin
-            marginTop={10}
-            gap={4}
-            wrap
-            justifyContent="flex-start"
-          >
-            {imageUrls.map((dataList, index) => (
-              <ComponentCustomImageController
-                key={index}
-                dataList={dataList}
-                index={index}
-                moveItem={moveItem}
-                removeImage={() => {
-                  removeImage(index);
-                }}
-              />
-            ))}
-          </CustomSetObject>
-        </DndProvider>
+        <CustomSection flexDirection="column">
+          <DndProvider backend={HTML5Backend}>
+            <CustomSection
+              flexDirection="row"
+              noMargin
+              gap={4}
+              flexWrap
+              justifyContent="flex-start"
+            >
+              {imageUrls.map((dataList, index) => (
+                <ComponentCustomImageController
+                  key={index}
+                  dataList={dataList}
+                  index={index}
+                  moveItem={moveItem}
+                  removeImage={() => {
+                    removeImage(index);
+                  }}
+                />
+              ))}
+            </CustomSection>
+          </DndProvider>
+        </CustomSection>
       </CustomPopup>
     </Fragment>
   );
@@ -315,7 +318,8 @@ function ComponentCustomImageController(
           });
         }}
       >
-        <CustomIcon url="/icon-x-input" size={16} />
+        {/*<CustomIcon url="/icon-x-input" size={16} /> */}
+        <CloseIcon />
       </div>
     </div>
   );

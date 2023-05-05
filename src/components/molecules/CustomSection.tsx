@@ -11,6 +11,8 @@ interface CustomSectionProps {
   gap?: number;
   overflowX?: boolean;
   overflowY?: boolean;
+  marginTop?: number;
+  marginBottom?: number;
 }
 
 const CustomSectionWrapper = styled("div")<CustomSectionProps>(
@@ -23,6 +25,8 @@ const CustomSectionWrapper = styled("div")<CustomSectionProps>(
     overflowX,
     overflowY,
     gap,
+    marginTop,
+    marginBottom,
   }) => ({
     display: "flex",
     flexDirection,
@@ -34,6 +38,8 @@ const CustomSectionWrapper = styled("div")<CustomSectionProps>(
     overflowX: overflowX ? "auto" : "hidden",
     overflowY: overflowY ? "auto" : "hidden",
     gap: gap,
+    marginTop: marginTop,
+    marginBottom: marginBottom,
   })
 );
 
@@ -45,6 +51,8 @@ export default function CustomSection({
   flexWrap = false,
   noMargin = false,
   gap = 6,
+  marginTop = 0,
+  marginBottom = 0,
 }: CustomSectionProps) {
   return (
     <CustomSectionWrapper
@@ -54,6 +62,8 @@ export default function CustomSection({
       flexWrap={flexWrap}
       noMargin={noMargin}
       gap={gap}
+      marginTop={marginTop}
+      marginBottom={marginBottom}
     >
       {children}
     </CustomSectionWrapper>

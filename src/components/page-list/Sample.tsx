@@ -8,6 +8,8 @@ import CustomSection from "../molecules/CustomSection";
 import CustomCheckBox from "../atoms/CustomCheckBox";
 import CustomRadioBox from "../atoms/CustomRadioBox";
 import CustomInputText from "../atoms/CustomInputText";
+import CustomPopup from "../molecules/CustomPopup";
+import CommonImageUpload from "../molecules/CommonImageUpload";
 export default function Sample() {
   const options = [
     { key: "Option 1", value: "1" },
@@ -38,9 +40,9 @@ export default function Sample() {
   const handleNameChange = (event: string) => {
     setName(event);
   };
-
+  const [modalStatus, setModalStatus] = useState(false);
   return (
-    <Fragment>
+    <article style={{ width: "100%", height: "100%" }}>
       <Button onClick={handle}>테스트</Button>
       <CustomButton
         color="secondary"
@@ -65,13 +67,15 @@ export default function Sample() {
           }}
         />
       </CustomSection>
-      <CustomSelectBox
-        placeholder="구분"
-        options={options}
-        disabled={false}
-        value={selectedValue}
-        onChange={handleValueChange}
-      />
+      <CustomSection flexDirection="column" alignItems="flex-start">
+        <CustomSelectBox
+          placeholder="구분"
+          options={options}
+          disabled={false}
+          value={selectedValue}
+          onChange={handleValueChange}
+        />
+      </CustomSection>
       <CustomSection overflowX>
         <CustomText type="p1" oneLine>
           테스트테스트테스트테스트
@@ -99,6 +103,31 @@ export default function Sample() {
           //helperText="테스트"
         />
       </CustomSection>
-    </Fragment>
+      <CustomButton
+        clickEvent={() => {
+          setModalStatus(true);
+        }}
+      >
+        테스트1
+      </CustomButton>
+      <CustomPopup
+        title="테스트"
+        status={modalStatus}
+        closeFunction={() => {
+          setModalStatus(false);
+        }}
+        fullScreen
+      >
+        <CustomSection flexDirection="column" alignItems="flex-start">
+          <CustomRadioBox status clickEvent={() => {}} title="테스트용도" />
+          <CustomButton clickEvent={() => {}}>테스트2</CustomButton>
+        </CustomSection>
+      </CustomPopup>
+      <CommonImageUpload
+        Volume={500}
+        multiple={5}
+        acceptedExtensions={[".png", ".jpg"]}
+      />
+    </article>
   );
 }
